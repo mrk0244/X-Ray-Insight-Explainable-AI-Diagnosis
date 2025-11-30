@@ -1,0 +1,5 @@
+{
+  "name": "X-Ray Insight: Explainable AI Diagnosis",
+  "description": "A medical imaging assistant that analyzes chest X-rays for pneumonia and provides visual explainability (XAI) using heatmaps to show where the model is looking.",
+  "requestFramePermissions": []
+}
