@@ -56,8 +56,8 @@ export const Uploader: React.FC<UploaderProps> = ({ onImageSelected, state }) =>
         className={`
           relative border-2 border-dashed rounded-3xl p-12 text-center cursor-pointer transition-all duration-300
           ${isDragging 
-            ? 'border-indigo-500 bg-indigo-50 scale-[1.02]' 
-            : 'border-slate-300 hover:border-indigo-400 hover:bg-slate-50 bg-white'
+            ? 'border-indigo-500 bg-indigo-50 dark:bg-indigo-900/20 scale-[1.02]' 
+            : 'border-slate-300 dark:border-slate-700 hover:border-indigo-400 dark:hover:border-indigo-500 hover:bg-slate-50 dark:hover:bg-slate-800/50 bg-white dark:bg-slate-900'
           }
         `}
       >
@@ -70,14 +70,14 @@ export const Uploader: React.FC<UploaderProps> = ({ onImageSelected, state }) =>
         />
         
         <div className="flex flex-col items-center justify-center space-y-4">
-          <div className={`p-4 rounded-full ${isDragging ? 'bg-indigo-100 text-indigo-600' : 'bg-slate-100 text-slate-500'}`}>
+          <div className={`p-4 rounded-full transition-colors ${isDragging ? 'bg-indigo-100 text-indigo-600 dark:bg-indigo-900/50 dark:text-indigo-300' : 'bg-slate-100 text-slate-500 dark:bg-slate-800 dark:text-slate-400'}`}>
             <UploadCloud className="w-10 h-10" />
           </div>
           <div className="space-y-2">
-            <h3 className="text-xl font-semibold text-slate-800">
+            <h3 className="text-xl font-semibold text-slate-800 dark:text-white transition-colors">
               Upload Chest X-Ray
             </h3>
-            <p className="text-slate-500 text-sm max-w-xs mx-auto">
+            <p className="text-slate-500 dark:text-slate-400 text-sm max-w-xs mx-auto transition-colors">
               Drag and drop your medical image here, or click to browse files.
             </p>
           </div>
@@ -85,7 +85,7 @@ export const Uploader: React.FC<UploaderProps> = ({ onImageSelected, state }) =>
 
         {/* Example hint */}
         <div className="absolute bottom-4 left-0 right-0 text-center">
-            <span className="text-xs text-slate-400 bg-white px-2">Supported formats: PNG, JPG, JPEG</span>
+            <span className="text-xs text-slate-400 dark:text-slate-500 bg-white dark:bg-slate-900 px-2 transition-colors">Supported formats: PNG, JPG, JPEG</span>
         </div>
       </div>
 
@@ -130,13 +130,13 @@ const DemoCard = ({ title, desc, src, onSelect }: { title: string, desc: string,
     return (
         <button 
             onClick={handleSelect}
-            className="group flex flex-col items-start p-4 bg-white border border-slate-200 rounded-xl hover:border-indigo-400 hover:shadow-md transition-all text-left"
+            className="group flex flex-col items-start p-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl hover:border-indigo-400 dark:hover:border-indigo-500 hover:shadow-md transition-all text-left"
         >
             <div className="flex items-center gap-3 mb-2">
-                <FileImage className="w-5 h-5 text-indigo-500 group-hover:scale-110 transition-transform" />
-                <span className="font-semibold text-slate-700 text-sm">{title}</span>
+                <FileImage className="w-5 h-5 text-indigo-500 dark:text-indigo-400 group-hover:scale-110 transition-transform" />
+                <span className="font-semibold text-slate-700 dark:text-slate-200 text-sm transition-colors">{title}</span>
             </div>
-            <p className="text-xs text-slate-500">{desc}</p>
+            <p className="text-xs text-slate-500 dark:text-slate-400 transition-colors">{desc}</p>
         </button>
     )
 }

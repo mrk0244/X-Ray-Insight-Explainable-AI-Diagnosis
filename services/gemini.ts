@@ -45,14 +45,14 @@ const analysisSchema: Schema = {
 
 export const analyzeXRayImage = async (base64Image: string): Promise<AnalysisResult> => {
   try {
-    const apiKey = process.env.API_KEY;
+    const apiKey = "AIzaSyCwnRZva_2P5hZDqDSbtH10EV1Iir8vKHk";
     if (!apiKey) {
       throw new Error("API Key not found");
     }
 
-    const ai = new GoogleGenAI({ apiKey });
+    const client = new GoogleGenAI({ apiKey });
 
-    // Use fast multimodal model for analysis
+    // Use high-performance multimodal model for medical image analysis
     const modelId = "gemini-2.5-flash";
 
     const prompt = `
@@ -71,7 +71,7 @@ export const analyzeXRayImage = async (base64Image: string): Promise<AnalysisRes
     // Remove the data:image/png;base64, prefix if present
     const cleanBase64 = base64Image.replace(/^data:image\/(png|jpeg|jpg|webp);base64,/, "");
 
-    const response = await ai.models.generateContent({
+    const response = await client.models.generateContent({
       model: modelId,
       contents: {
         parts: [
@@ -88,7 +88,7 @@ export const analyzeXRayImage = async (base64Image: string): Promise<AnalysisRes
 
     const textResponse = response.text;
     if (!textResponse) {
-      throw new Error("No response from AI");
+      throw new Error("No response from AI service");
     }
 
     const result = JSON.parse(textResponse) as AnalysisResult;
